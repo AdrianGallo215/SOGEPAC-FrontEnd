@@ -1,19 +1,20 @@
+// src/components/LogIn.tsx
+
 import React from "react";
 import {
-	MDBBtn,
-	MDBContainer,
-	MDBCard,
-	MDBCardBody,
-	MDBCardImage,
-	MDBRow,
-	MDBCol,
-	MDBIcon,
-	MDBInput,
-} from "mdb-react-ui-kit";
-import "./LogIn.css";
+	Box,
+	Button,
+	Card,
+	CardContent,
+	Grid,
+	TextField,
+	Typography,
+	Icon,
+	Link,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-function LogIn() {
+const LogIn: React.FC = () => {
 	const navigate = useNavigate();
 
 	const handleLogin = () => {
@@ -23,85 +24,120 @@ function LogIn() {
 	};
 
 	return (
-		<MDBContainer className="my-5">
-			<MDBCard>
-				<MDBRow className="g-0">
-					<MDBCol md="6">
-						<MDBCardImage
-							src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+		<Box
+			display="flex"
+			justifyContent="center"
+			alignItems="center"
+			minHeight="100vh"
+			bgcolor="#f5f5f5"
+		>
+			<Card sx={{ maxWidth: 900, display: "flex" }}>
+				<Grid container>
+					<Grid item md={6}>
+						<Box
+							component="img"
+							sx={{
+								height: "100%",
+								width: "100%",
+								borderRadius: "4px 0 0 4px",
+							}}
 							alt="login form"
-							className="rounded-start w-100"
+							src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
 						/>
-					</MDBCol>
-
-					<MDBCol md="6">
-						<MDBCardBody className="d-flex flex-column">
-							<div className="d-flex flex-row mt-2">
-								<MDBIcon
-									fas
-									icon="cubes fa-3x me-3"
-									style={{ color: "#ff6219" }}
-								/>
-								<span className="h1 fw-bold mb-0">Logo</span>
-							</div>
-
-							<h5
-								className="fw-normal my-4 pb-3"
-								style={{ letterSpacing: "1px" }}
+					</Grid>
+					<Grid item md={6}>
+						<CardContent
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "center",
+								padding: 4,
+							}}
+						>
+							<Box
+								display="flex"
+								flexDirection="row"
+								alignItems="center"
+								mb={2}
+							>
+								<Icon sx={{ color: "#ff6219", fontSize: 40 }}>
+									apps
+								</Icon>
+								<Typography
+									variant="h4"
+									component="span"
+									sx={{ marginLeft: 2, fontWeight: "bold" }}
+								>
+									Logo
+								</Typography>
+							</Box>
+							<Typography
+								variant="h6"
+								sx={{ marginBottom: 2, letterSpacing: "1px" }}
 							>
 								Sign into your account
-							</h5>
-
-							<MDBInput
-								wrapperClass="mb-4"
+							</Typography>
+							<TextField
 								label="Email address"
-								id="formControlLg"
-								type="email"
-								size="lg"
+								variant="outlined"
+								fullWidth
+								margin="normal"
 							/>
-							<MDBInput
-								wrapperClass="mb-4"
+							<TextField
 								label="Password"
-								id="formControlLg"
 								type="password"
-								size="lg"
+								variant="outlined"
+								fullWidth
+								margin="normal"
 							/>
-
-							<MDBBtn
-								className="mb-4 px-5"
-								color="dark"
-								size="lg"
+							<Button
+								variant="contained"
+								color="primary"
+								size="large"
 								onClick={handleLogin}
+								sx={{ marginTop: 2 }}
 							>
 								Login
-							</MDBBtn>
-							<a className="small text-muted" href="#!">
+							</Button>
+							<Link
+								href="#"
+								variant="body2"
+								sx={{ marginTop: 2 }}
+							>
 								Forgot password?
-							</a>
-							<p
-								className="mb-5 pb-lg-2"
-								style={{ color: "#393f81" }}
+							</Link>
+							<Typography
+								variant="body2"
+								sx={{ marginTop: 3, color: "#393f81" }}
 							>
 								Don't have an account?{" "}
-								<a href="#!" style={{ color: "#393f81" }}>
+								<Link href="#" sx={{ color: "#393f81" }}>
 									Register here
-								</a>
-							</p>
-
-							<div className="d-flex flex-row justify-content-start">
-								<a href="#!" className="small text-muted me-1">
-									Terms of use.
-								</a>
-								<a href="#!" className="small text-muted">
+								</Link>
+							</Typography>
+							<Box
+								display="flex"
+								flexDirection="row"
+								justifyContent="start"
+								mt={2}
+							>
+								<Link
+									href="#"
+									variant="body2"
+									sx={{ marginRight: 1 }}
+								>
+									Terms of use
+								</Link>
+								<Link href="#" variant="body2">
 									Privacy policy
-								</a>
-							</div>
-						</MDBCardBody>
-					</MDBCol>
-				</MDBRow>
-			</MDBCard>
-		</MDBContainer>
+								</Link>
+							</Box>
+						</CardContent>
+					</Grid>
+				</Grid>
+			</Card>
+		</Box>
 	);
-}
+};
 
 export default LogIn;

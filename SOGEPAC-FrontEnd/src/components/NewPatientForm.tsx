@@ -19,14 +19,21 @@ const NewPatientForm: React.FC = () => {
 	const [telefono, setTelefono] = useState("");
 
 	const listOfAllRegisters = []; //Obtener la canridad de elementos de la lista
-	axios
-		.get("/localhost:8080/api/v1/paciente/all")
-		.then(function (response) {
-			console.log(response);
-		})
-		.catch((e) => {
-			console.error(e);
-		});
+	try {
+		axios
+			.get("/localhost:8080/api/v1/paciente/all")
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.error(error);
+			});
+	} catch (error) {
+		console.error(error);
+	}
+
+	axios.post("", {});
+
 	setId((listOfAllRegisters.length + 1).toString());
 
 	return (
