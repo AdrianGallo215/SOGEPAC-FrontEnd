@@ -12,18 +12,22 @@ import {
 import axios from "axios";
 
 const NewPatientForm: React.FC = () => {
-	const [id, setId] = useState(0);
+	const [id, setId] = useState("");
+	const [nombre, setNombre] = useState("");
+	const [dni, setDni] = useState("");
+	const [edad, setEdad] = useState("");
+	const [telefono, setTelefono] = useState("");
 
 	const listOfAllRegisters = []; //Obtener la canridad de elementos de la lista
 	axios
-		.get("localhost:8080/api/v1/paciente/all")
+		.get("/localhost:8080/api/v1/paciente/all")
 		.then(function (response) {
 			console.log(response);
 		})
 		.catch((e) => {
 			console.error(e);
 		});
-	setId(listOfAllRegisters.length + 1);
+	setId((listOfAllRegisters.length + 1).toString());
 
 	return (
 		<Box
