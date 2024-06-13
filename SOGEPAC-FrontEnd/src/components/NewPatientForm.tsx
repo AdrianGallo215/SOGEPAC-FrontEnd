@@ -9,9 +9,21 @@ import {
 	Grid,
 	MenuItem,
 } from "@mui/material";
+import axios from "axios";
 
 const NewPatientForm: React.FC = () => {
-	
+	const [id, setId] = useState(0);
+
+	const listOfAllRegisters = []; //Obtener la canridad de elementos de la lista
+	axios
+		.get("localhost:8080/api/v1/paciente/all")
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch((e) => {
+			console.error(e);
+		});
+	setId(listOfAllRegisters.length + 1);
 
 	return (
 		<Box
@@ -54,6 +66,7 @@ const NewPatientForm: React.FC = () => {
 							label="Id Paciente"
 							fullWidth
 							disabled
+							value={id}
 							sx={{ marginTop: "10px" }}
 						/>
 					</Grid>
