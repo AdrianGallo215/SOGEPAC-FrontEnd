@@ -13,11 +13,16 @@ import {
 import axios from "axios";
 
 const NewPatientForm: React.FC = () => {
-	const [id, setId] = useState(0);
+	const [id, setId] = useState("");
+	const [nombre, setNombre] = useState("");
+	const [dni, setDni] = useState("");
+	const [edad, setEdad] = useState("");
+	const [telefono, setTelefono] = useState("");
+
 	const listOfAllRegisters = []; //Obtener la canridad de elementos de la lista
 	try {
 		axios
-			.get("localhost:8080/api/v1/paciente/all")
+			.get("/localhost:8080/api/v1/paciente/all")
 			.then(function (response) {
 				console.log(response);
 			})
@@ -85,7 +90,7 @@ const NewPatientForm: React.FC = () => {
 							fullWidth
 							sx={{ marginTop: "10px", padding: "0px" }}
 						/>
-						<TextField
+						{/* <TextField
 							label="Tipo de Documento de Identidad"
 							select
 							fullWidth
@@ -94,13 +99,13 @@ const NewPatientForm: React.FC = () => {
 							<MenuItem value="DNI">DNI</MenuItem>
 							<MenuItem value="Passport">Passport</MenuItem>
 							<MenuItem value="Other">Other</MenuItem>
-						</TextField>
+						</TextField> */}
 						<TextField
 							label="Número de documento"
 							fullWidth
 							sx={{ marginTop: "10px" }}
 						/>
-						<TextField
+					{/* 	<TextField
 							label="Sexo"
 							select
 							fullWidth
@@ -109,7 +114,7 @@ const NewPatientForm: React.FC = () => {
 							<MenuItem value="M">Masculino</MenuItem>
 							<MenuItem value="F">Femenino</MenuItem>
 							<MenuItem value="O">Otro</MenuItem>
-						</TextField>
+						</TextField> */}
 						<TextField
 							label="Edad"
 							fullWidth
@@ -119,24 +124,24 @@ const NewPatientForm: React.FC = () => {
 
 					<Grid item xs={12}>
 						<Typography variant="h6">Datos de contacto</Typography>
-						<TextField
+						{/* <TextField
 							label="Dirección"
 							fullWidth
 							sx={{ marginTop: "10px" }}
-						/>
+						/> */}
 						<TextField
 							label="Nro de teléfono"
 							fullWidth
 							sx={{ marginTop: "10px" }}
 						/>
-						<TextField
+						{/* <TextField
 							label="Correo"
 							fullWidth
 							sx={{ marginTop: "10px" }}
-						/>
+						/> */}
 					</Grid>
 
-					<Grid item xs={12}>
+					{/* <Grid item xs={12}>
 						<Typography variant="h6">
 							Detalles de paciente
 						</Typography>
@@ -152,7 +157,7 @@ const NewPatientForm: React.FC = () => {
 							multiline
 							sx={{ marginTop: "10px" }}
 						/>
-					</Grid>
+					</Grid> */}
 
 					<Grid
 						item
