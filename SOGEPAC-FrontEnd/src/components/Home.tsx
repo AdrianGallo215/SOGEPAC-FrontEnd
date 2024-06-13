@@ -89,7 +89,6 @@ const Home: React.FC = () => {
 								color: "#C8D6E5",
 							},
 						}}
-						onClick={() => navigate("/new-patient")}
 					>
 						<CardContent>
 							<IconButton>
@@ -186,6 +185,7 @@ const Home: React.FC = () => {
 								color: "#C8D6E5",
 							},
 						}}
+						onClick={() => navigate("/new-patient")}
 					>
 						<CardContent>
 							<IconButton>
