@@ -1,6 +1,6 @@
 // src/components/NewPatientForm.tsx
 
-import React from "react";
+import React, { useState } from "react";
 import {
 	Box,
 	Button,
@@ -11,8 +11,7 @@ import {
 } from "@mui/material";
 
 const NewPatientForm: React.FC = () => {
-
-    
+	
 
 	return (
 		<Box
