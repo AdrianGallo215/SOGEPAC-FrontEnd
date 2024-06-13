@@ -19,7 +19,7 @@ function LogIn() {
 	const handleLogin = () => {
 		// Add login logic here
 		// For now, we simply navigate to the dashboard
-		navigate("/dashboard");
+		navigate("/Home");
 	};
 
 	return (

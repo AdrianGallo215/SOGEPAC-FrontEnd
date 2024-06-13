@@ -3,7 +3,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 import Login from "./components/LogIn";
 
 const App: React.FC = () => {
@@ -12,7 +12,7 @@ const App: React.FC = () => {
 			<div className="App">
 				<Routes>
 					<Route path="/" element={<Login />} />
-					<Route path="/dashboard" element={<Dashboard />} />
+					<Route path="/home" element={<Home />} />
 				</Routes>
 			</div>
 		</Router>
