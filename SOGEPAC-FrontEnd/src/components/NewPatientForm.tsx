@@ -22,12 +22,11 @@ const NewPatientForm: React.FC = () => {
 		telefono: ''
 	  });
 
-	const listOfAllRegisters = []; //Obtener la canridad de elementos de la lista
 	try {
 		axios
 			.get("http://localhost:8080/api/v1/paciente/all")
 			.then(function (response) {
-				console.log(response);
+				setId(response.data.length + 1);
 			})
 			.catch(function (error) {
 				console.error(error);
@@ -195,7 +194,7 @@ export default NewPatientForm;
 							sx={{ marginTop: "10px" }}
 							onChange={() => {setDni(dni)}}
 						/>
-					{/* 	<TextField
+						{/* 	<TextField
 							label="Sexo"
 							select
 							fullWidth

@@ -5,7 +5,7 @@
 
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	background-color: #c8d6e5;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -52,6 +52,17 @@ button:hover {
 button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
+}
+
+input {
+	padding: 12px !important;
+	font-size: 12px !important;
+	border-radius: 5px !important;
+	background-color: #c8d6e5 !important;
+	border: 1px solid darkgray !important;
+}
+legend > span {
+	font-size: 12px !important;
 }
 
 @media (prefers-color-scheme: light) {
