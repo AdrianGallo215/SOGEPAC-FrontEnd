@@ -14,9 +14,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import EmergencyIcon from "@mui/icons-material/Warning";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 const Home: React.FC = () => {
+	const navigate = useNavigate();
 	return (
 		<Box
 			sx={{
@@ -81,12 +83,13 @@ const Home: React.FC = () => {
 							backgroundColor: "#C8D6E5",
 							transition: "background-color 0.3s",
 							color: "#009485",
-
+							cursor: "pointer",
 							"&:hover": {
 								backgroundColor: "#009485",
 								color: "#C8D6E5",
 							},
 						}}
+						onClick={() => navigate("/new-patient")}
 					>
 						<CardContent>
 							<IconButton>

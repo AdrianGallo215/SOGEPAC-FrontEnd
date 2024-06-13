@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home";
 import Login from "./components/LogIn";
+import NewPatientForm from "./components/NewPatientForm";
 
 const App: React.FC = () => {
 	return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
 				<Routes>
 					<Route path="/" element={<Login />} />
 					<Route path="/home" element={<Home />} />
+					<Route path="/new-patient" element={<NewPatientForm />} />
 				</Routes>
 			</div>
 		</Router>
