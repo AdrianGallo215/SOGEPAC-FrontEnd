@@ -6,6 +6,7 @@ import "./App.css";
 import Home from "./components/Home";
 import Login from "./components/LogIn";
 import NewPatientForm from "./components/NewPatientForm";
+import BuscarHistoriaclinico from "./components/BuscarHistoriaclinico";
 
 const App: React.FC = () => {
 	return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
 					<Route path="/" element={<Login />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/new-patient" element={<NewPatientForm />} />
+					<Route path="/BuscarHistoriaclinico" element={<BuscarHistoriaclinico />} />
 				</Routes>
 			</div>
 		</Router>

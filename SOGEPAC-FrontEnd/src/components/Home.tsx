@@ -112,7 +112,7 @@ const Home: React.FC = () => {
 								backgroundColor: "#009485",
 								color: "#C8D6E5",
 							},
-						}}
+						}} onClick={() => navigate("/BuscarHistoriaclinico")}
 					>
 						<CardContent>
 							<IconButton>
