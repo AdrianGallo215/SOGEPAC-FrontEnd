@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // src/components/NewPatientForm.tsx
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	Box,
 	Button,
@@ -11,9 +11,10 @@ import {
 	MenuItem,
 } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const NewPatientForm: React.FC = () => {
-
+	const navigate = useNavigate()
 	const [paciente, setPaciente] = useState({
 		id: '',
 		nombre: '',
@@ -22,23 +23,31 @@ const NewPatientForm: React.FC = () => {
 		telefono: ''
 	  });
 
-	try {
-		axios
-			.get("http://localhost:8080/api/v1/paciente/all")
-			.then(function (response) {
-				setId(response.data.length + 1);
-			})
-			.catch(function (error) {
-				console.error(error);
-			});
-	} catch (error) {
-		console.error(error);
-	}
+	useEffect(() => {
+		try {
+			axios
+				.get("http://localhost:8080/api/v1/paciente/all")
+				.then(function (response) {
+	
+					changeID(response.data.length.toString());
+				})
+				.catch(function (error) {
+					console.error(error);
+				});
+		} catch (error) {
+			console.error(error);
+		}
+	}, []);
 
 	//axios.post("", {});
 
 	//setId(listOfAllRegisters.length + 1);
-
+	const changeID = (id:any) => {
+		setPaciente({
+			...paciente,
+			["id"]: id
+		  });
+	}
 	const handleChange = (e:any) => {
 		const { name, value } = e.target;
 		setPaciente({
@@ -51,7 +60,18 @@ const NewPatientForm: React.FC = () => {
 		e.preventDefault();
 		console.log('Datos del formulario:', paciente);
 		// Aquí puedes agregar la lógica para enviar los datos a un servidor
-	};
+		axios.post("http://localhost:8080/api/v1/paciente/add", paciente)
+			.then(function(response){
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+				
+			})
+			.finally(function () {
+				navigate("/home")
+			})
+		};
 
 	return (
 
@@ -75,7 +95,17 @@ const NewPatientForm: React.FC = () => {
 				}}
 			>
 				<form onSubmit={handleSubmit}>
-      <div>
+				<div>
+        <label htmlFor="nombre">ID:</label>
+        <input
+			readOnly
+          type="text"
+          id="id"
+          name="id"
+          value={paciente.id}
+        />
+      </div>
+	  <div>
         <label htmlFor="nombre">Nombre:</label>
         <input
           type="text"
