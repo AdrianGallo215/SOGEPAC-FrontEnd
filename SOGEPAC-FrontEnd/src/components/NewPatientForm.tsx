@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/components/NewPatientForm.tsx
 
 import React, { useState } from "react";
@@ -27,9 +28,9 @@ const NewPatientForm: React.FC = () => {
 		console.error(error);
 	}
 
-	axios.post("", {});
+	//axios.post("", {});
 
-	setId(listOfAllRegisters.length + 1);
+	//setId(listOfAllRegisters.length + 1);
 
 	return (
 		<Box
