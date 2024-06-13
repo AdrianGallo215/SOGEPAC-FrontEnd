@@ -19,12 +19,11 @@ const NewPatientForm: React.FC = () => {
 	const [edad, setEdad] = useState("");
 	const [telefono, setTelefono] = useState("");
 
-	const listOfAllRegisters = []; //Obtener la canridad de elementos de la lista
 	try {
 		axios
 			.get("/localhost:8080/api/v1/paciente/all")
 			.then(function (response) {
-				console.log(response);
+				setId(response.data.length + 1);
 			})
 			.catch(function (error) {
 				console.error(error);
@@ -105,7 +104,7 @@ const NewPatientForm: React.FC = () => {
 							fullWidth
 							sx={{ marginTop: "10px" }}
 						/>
-					{/* 	<TextField
+						{/* 	<TextField
 							label="Sexo"
 							select
 							fullWidth
