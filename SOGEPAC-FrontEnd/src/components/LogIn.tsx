@@ -9,7 +9,6 @@ import {
 	Grid,
 	TextField,
 	Typography,
-	Icon,
 	Link,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -26,12 +25,19 @@ const LogIn: React.FC = () => {
 	return (
 		<Box
 			display="flex"
+			flexDirection="column"
 			justifyContent="center"
 			alignItems="center"
 			minHeight="100vh"
-			bgcolor="#f5f5f5"
+			bgcolor="#8DA9C4"
 		>
-			<Card sx={{ maxWidth: 900, display: "flex" }}>
+			<Card
+				sx={{
+					maxWidth: 900,
+					display: "flex",
+					backgroundColor: "#8DA9C4",
+				}}
+			>
 				<Grid container>
 					<Grid item md={6}>
 						<Box
@@ -40,6 +46,7 @@ const LogIn: React.FC = () => {
 								height: "100%",
 								width: "100%",
 								borderRadius: "4px 0 0 4px",
+								backgroundColor: "#8DA9C4",
 							}}
 							alt="login form"
 							src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
@@ -60,22 +67,28 @@ const LogIn: React.FC = () => {
 								alignItems="center"
 								mb={2}
 							>
-								<Icon sx={{ color: "#ff6219", fontSize: 40 }}>
-									apps
-								</Icon>
 								<Typography
 									variant="h4"
 									component="span"
-									sx={{ marginLeft: 2, fontWeight: "bold" }}
+									sx={{
+										marginLeft: 2,
+										fontWeight: "bold",
+										fontFamily: "Nunito Sans, Helvetica",
+										color: "#C8D6E5",
+									}}
 								>
-									Logo
+									SOGEPAC
 								</Typography>
 							</Box>
 							<Typography
 								variant="h6"
-								sx={{ marginBottom: 2, letterSpacing: "1px" }}
+								sx={{
+									marginBottom: 2,
+									letterSpacing: "1px",
+									color: "#c8d6e5",
+								}}
 							>
-								Sign into your account
+								Inicie sesión
 							</Typography>
 							<TextField
 								label="Email address"
@@ -104,15 +117,15 @@ const LogIn: React.FC = () => {
 								variant="body2"
 								sx={{ marginTop: 2 }}
 							>
-								Forgot password?
+								Olvidaste la contraseña?
 							</Link>
 							<Typography
 								variant="body2"
 								sx={{ marginTop: 3, color: "#393f81" }}
 							>
-								Don't have an account?{" "}
+								No tienes una cuenta?{" "}
 								<Link href="#" sx={{ color: "#393f81" }}>
-									Register here
+									Reístrate aquí!
 								</Link>
 							</Typography>
 							<Box
@@ -126,10 +139,10 @@ const LogIn: React.FC = () => {
 									variant="body2"
 									sx={{ marginRight: 1 }}
 								>
-									Terms of use
+									Términos de uso
 								</Link>
 								<Link href="#" variant="body2">
-									Privacy policy
+									Política de privacidad
 								</Link>
 							</Box>
 						</CardContent>
