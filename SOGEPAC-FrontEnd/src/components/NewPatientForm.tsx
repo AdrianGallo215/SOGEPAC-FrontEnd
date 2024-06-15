@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // src/components/NewPatientForm.tsx
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	Box,
 	Button,
@@ -11,33 +11,148 @@ import {
 	MenuItem,
 } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const NewPatientForm: React.FC = () => {
-	const [id, setId] = useState("");
-	const [nombre, setNombre] = useState("");
-	const [dni, setDni] = useState("");
-	const [edad, setEdad] = useState("");
-	const [telefono, setTelefono] = useState("");
+	const navigate = useNavigate()
+	const [paciente, setPaciente] = useState({
+		id: '',
+		nombre: '',
+		dni:'',
+		edad: '',
+		telefono: ''
+	  });
 
-	try {
-		axios
-			.get("/localhost:8080/api/v1/paciente/all")
-			.then(function (response) {
-				setId(response.data.length + 1);
-			})
-			.catch(function (error) {
-				console.error(error);
-			});
-	} catch (error) {
-		console.error(error);
-	}
+	useEffect(() => {
+		try {
+			axios
+				.get("http://localhost:8080/api/v1/paciente/all")
+				.then(function (response) {
+	
+					changeID(response.data.length.toString());
+				})
+				.catch(function (error) {
+					console.error(error);
+				});
+		} catch (error) {
+			console.error(error);
+		}
+	}, []);
 
 	//axios.post("", {});
 
 	//setId(listOfAllRegisters.length + 1);
+	const changeID = (id:any) => {
+		setPaciente({
+			...paciente,
+			["id"]: id
+		  });
+	}
+	const handleChange = (e:any) => {
+		const { name, value } = e.target;
+		setPaciente({
+		  ...paciente,
+		  [name]: value
+		});
+	  };
+
+	const handleSubmit = (e:any) => {
+		e.preventDefault();
+		console.log('Datos del formulario:', paciente);
+		// Aquí puedes agregar la lógica para enviar los datos a un servidor
+		axios.post("http://localhost:8080/api/v1/paciente/add", paciente)
+			.then(function(response){
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+				
+			})
+			.finally(function () {
+				navigate("/home")
+			})
+		};
 
 	return (
+
 		<Box
+			sx={{
+				padding: "20px",
+				backgroundColor: "#e0f7fa",
+				minHeight: "100vh",
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
+			}}
+		>
+			<Box
+				sx={{
+					backgroundColor: "#e3f2fd",
+					padding: "20px",
+					borderRadius: "10px",
+					width: "80%",
+					maxWidth: "800px",
+				}}
+			>
+				<form onSubmit={handleSubmit}>
+				<div>
+        <label htmlFor="nombre">ID:</label>
+        <input
+			readOnly
+          type="text"
+          id="id"
+          name="id"
+          value={paciente.id}
+        />
+      </div>
+	  <div>
+        <label htmlFor="nombre">Nombre:</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          value={paciente.nombre}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="email">DNI:</label>
+        <input
+          id="dni"
+          name="dni"
+          value={paciente.dni}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="mensaje">Edad:</label>
+        <input
+          id="edad"
+          name="edad"
+          value={paciente.edad}
+          onChange={handleChange}
+        />
+      </div>
+	  <div>
+        <label htmlFor="mensaje">telefono:</label>
+        <input
+          id="telefono"
+          name="telefono"
+          value={paciente.telefono}
+          onChange={handleChange}
+        />
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+			</Box>
+		</Box>
+		
+	);
+};
+
+export default NewPatientForm;
+
+/* {/* <Box
 			sx={{
 				padding: "20px",
 				backgroundColor: "#e0f7fa",
@@ -79,6 +194,7 @@ const NewPatientForm: React.FC = () => {
 							disabled
 							value={id}
 							sx={{ marginTop: "10px" }}
+							onChange={() => {setId(id)}}
 						/>
 					</Grid>
 
@@ -87,7 +203,9 @@ const NewPatientForm: React.FC = () => {
 						<TextField
 							label="Nombre completo"
 							fullWidth
+							value={nombre}
 							sx={{ marginTop: "10px", padding: "0px" }}
+							onChange={() => {setNombre(nombre)}}
 						/>
 						{/* <TextField
 							label="Tipo de Documento de Identidad"
@@ -98,11 +216,13 @@ const NewPatientForm: React.FC = () => {
 							<MenuItem value="DNI">DNI</MenuItem>
 							<MenuItem value="Passport">Passport</MenuItem>
 							<MenuItem value="Other">Other</MenuItem>
-						</TextField> */}
+						</TextField>
 						<TextField
 							label="Número de documento"
 							fullWidth
+							value={dni}
 							sx={{ marginTop: "10px" }}
+							onChange={() => {setDni(dni)}}
 						/>
 						{/* 	<TextField
 							label="Sexo"
@@ -113,11 +233,13 @@ const NewPatientForm: React.FC = () => {
 							<MenuItem value="M">Masculino</MenuItem>
 							<MenuItem value="F">Femenino</MenuItem>
 							<MenuItem value="O">Otro</MenuItem>
-						</TextField> */}
+						</TextField>
 						<TextField
 							label="Edad"
 							fullWidth
+							value={edad}
 							sx={{ marginTop: "10px" }}
+							onChange={() => {setEdad(edad)}}
 						/>
 					</Grid>
 
@@ -127,17 +249,19 @@ const NewPatientForm: React.FC = () => {
 							label="Dirección"
 							fullWidth
 							sx={{ marginTop: "10px" }}
-						/> */}
+						/>
 						<TextField
 							label="Nro de teléfono"
 							fullWidth
 							sx={{ marginTop: "10px" }}
+							value={telefono}
+							onChange={() => {setTelefono(telefono)}}
 						/>
 						{/* <TextField
 							label="Correo"
 							fullWidth
 							sx={{ marginTop: "10px" }}
-						/> */}
+						/>
 					</Grid>
 
 					{/* <Grid item xs={12}>
@@ -156,7 +280,7 @@ const NewPatientForm: React.FC = () => {
 							multiline
 							sx={{ marginTop: "10px" }}
 						/>
-					</Grid> */}
+					</Grid>
 
 					<Grid
 						item
@@ -168,9 +292,11 @@ const NewPatientForm: React.FC = () => {
 						}}
 					>
 						<Button
+							type="submit"
 							variant="contained"
 							color="primary"
 							sx={{ width: "48%" }}
+							onClick={SendData}
 						>
 							Guardar
 						</Button>
@@ -184,8 +310,4 @@ const NewPatientForm: React.FC = () => {
 					</Grid>
 				</Grid>
 			</Box>
-		</Box>
-	);
-};
-
-export default NewPatientForm;
+		</Box>*/
