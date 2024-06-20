@@ -1,34 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // src/components/NewPatientForm.tsx
 
-import React, { useContext, useEffect, useState } from "react";
-import {
-	Box,
-	Button,
-	TextField,
-	Typography,
-	Grid,
-	MenuItem,
-} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const NewPatientForm: React.FC = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const [paciente, setPaciente] = useState({
-		id: '',
-		nombre: '',
-		dni:'',
-		edad: '',
-		telefono: ''
-	  });
+		id: "",
+		nombre: "",
+		dni: "",
+		edad: "",
+		telefono: "",
+	});
 
 	useEffect(() => {
 		try {
 			axios
 				.get("http://localhost:8080/api/v1/paciente/all")
 				.then(function (response) {
-	
 					changeID(response.data.length.toString());
 				})
 				.catch(function (error) {
@@ -42,39 +36,38 @@ const NewPatientForm: React.FC = () => {
 	//axios.post("", {});
 
 	//setId(listOfAllRegisters.length + 1);
-	const changeID = (id:any) => {
+	const changeID = (id: any) => {
 		setPaciente({
 			...paciente,
-			["id"]: id
-		  });
-	}
-	const handleChange = (e:any) => {
+			["id"]: id,
+		});
+	};
+	const handleChange = (e: any) => {
 		const { name, value } = e.target;
 		setPaciente({
-		  ...paciente,
-		  [name]: value
+			...paciente,
+			[name]: value,
 		});
-	  };
+	};
 
-	const handleSubmit = (e:any) => {
+	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		console.log('Datos del formulario:', paciente);
+		console.log("Datos del formulario:", paciente);
 		// Aquí puedes agregar la lógica para enviar los datos a un servidor
-		axios.post("http://localhost:8080/api/v1/paciente/add", paciente)
-			.then(function(response){
-				console.log(response);
+		axios
+			.post("http://localhost:8080/api/v1/paciente/add", paciente)
+			.then(function () {
+				console.log("paciente agregado");
 			})
 			.catch(function (error) {
 				console.log(error);
-				
 			})
 			.finally(function () {
-				navigate("/home")
-			})
-		};
+				navigate("/home");
+			});
+	};
 
 	return (
-
 		<Box
 			sx={{
 				padding: "20px",
@@ -95,58 +88,57 @@ const NewPatientForm: React.FC = () => {
 				}}
 			>
 				<form onSubmit={handleSubmit}>
-				<div>
-        <label htmlFor="nombre">ID:</label>
-        <input
-			readOnly
-          type="text"
-          id="id"
-          name="id"
-          value={paciente.id}
-        />
-      </div>
-	  <div>
-        <label htmlFor="nombre">Nombre:</label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          value={paciente.nombre}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">DNI:</label>
-        <input
-          id="dni"
-          name="dni"
-          value={paciente.dni}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="mensaje">Edad:</label>
-        <input
-          id="edad"
-          name="edad"
-          value={paciente.edad}
-          onChange={handleChange}
-        />
-      </div>
-	  <div>
-        <label htmlFor="mensaje">telefono:</label>
-        <input
-          id="telefono"
-          name="telefono"
-          value={paciente.telefono}
-          onChange={handleChange}
-        />
-      </div>
-      <button type="submit">Enviar</button>
-    </form>
+					<div>
+						<label htmlFor="nombre">ID:</label>
+						<input
+							readOnly
+							type="text"
+							id="id"
+							name="id"
+							value={paciente.id}
+						/>
+					</div>
+					<div>
+						<label htmlFor="nombre">Nombre:</label>
+						<input
+							type="text"
+							id="nombre"
+							name="nombre"
+							value={paciente.nombre}
+							onChange={handleChange}
+						/>
+					</div>
+					<div>
+						<label htmlFor="email">DNI:</label>
+						<input
+							id="dni"
+							name="dni"
+							value={paciente.dni}
+							onChange={handleChange}
+						/>
+					</div>
+					<div>
+						<label htmlFor="mensaje">Edad:</label>
+						<input
+							id="edad"
+							name="edad"
+							value={paciente.edad}
+							onChange={handleChange}
+						/>
+					</div>
+					<div>
+						<label htmlFor="mensaje">telefono:</label>
+						<input
+							id="telefono"
+							name="telefono"
+							value={paciente.telefono}
+							onChange={handleChange}
+						/>
+					</div>
+					<button type="submit">Enviar</button>
+				</form>
 			</Box>
 		</Box>
-		
 	);
 };
 
