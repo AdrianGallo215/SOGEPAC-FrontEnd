@@ -77,7 +77,7 @@ const LogIn: React.FC = () => {
 										color: "#C8D6E5",
 									}}
 								>
-									SOGEPjjjjjjAC
+									SOGEPAC
 								</Typography>
 							</Box>
 							<Typography
